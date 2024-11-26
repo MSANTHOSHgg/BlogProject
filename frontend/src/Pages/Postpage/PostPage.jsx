@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./PostPage.css";
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PostPage = () => {
   const { id } = useParams();
@@ -14,6 +16,16 @@ const PostPage = () => {
         const response = await axios.get(`http://localhost:3001/posts/${id}`);
         setPost(response.data);
       } catch (err) {
+        toast.error('An error occured', {
+          position: 'top-right',
+          autoClose: 3500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: 'light',
+          transition: Slide,
+        });
         console.error(err);
       }
     };
@@ -25,6 +37,16 @@ const PostPage = () => {
       await axios.delete(`http://localhost:3001/delete/${id}`);
       navigate("/");
     } catch (err) {
+      toast.error('An error occured', {
+        position: 'top-right',
+        autoClose: 3500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'light',
+        transition: Slide,
+      });
       console.error(err);
     }
   };
@@ -41,6 +63,7 @@ const PostPage = () => {
       <button onClick={() => navigate(`/edit/${id}`)}>Edit</button>
       <button onClick={handleDelete}>Delete</button>
       </div>
+      <ToastContainer/>
     </div>
     );
 };

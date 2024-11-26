@@ -3,7 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import PostForm from "../../components/Postform/PostForm";
 import "./CreateEditPost.css";
-import backimg from '../../assets/back-button.png'
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateEditPost = () => {
     const { id } = useParams();
@@ -43,6 +44,16 @@ const CreateEditPost = () => {
             }
             navigate("/");
         } catch (err) {
+            toast.error('Try again', {
+                position: 'top-right',
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: 'light',
+                transition: Slide,
+              });
             console.error(err);
         }
     };
@@ -55,6 +66,7 @@ const CreateEditPost = () => {
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
             />
+            <ToastContainer />
         </div>
     );
 };

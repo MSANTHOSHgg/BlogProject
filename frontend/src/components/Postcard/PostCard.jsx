@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './PostCard.css'
 
-const PostCard = ({ post, onDelete }) => {
+const PostCard = ({ post }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -15,13 +15,6 @@ const PostCard = ({ post, onDelete }) => {
             <p>
                 <small>{new Date(post.publishedDate).toLocaleDateString()}</small>
             </p>
-            {/* <div>
-                <Link to={`/edit/${post._id}`}>Edit</Link>
-                <div>
-                    <button
-                        onClick={() => onDelete(post._id)}>Delete</button>
-                </div>
-            </div> */}
         </div>
     );
 };
